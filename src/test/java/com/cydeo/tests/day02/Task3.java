@@ -5,21 +5,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class OfficeHoursTask2 {
+public class Task3 {
 
     public static void main(String[] args) {
 
-        /*
-        TC:3 As a user I should be able to see Contact is displayed
+        /* TC:3 As a user I should be able to see that Contact is displayed
 
-        //1-open a Chrome browser */
+        // 1- Open a Chrome browser */
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
 
-        //2-goto https://vytrack.com/
+        // 2- Go to https://vytrack.com/
         driver.get("https://vytrack.com/");
 
-        //3-verify Contact is displayed and label is "Contact"
+        // 3- Verify Contact is displayed and label is "Contact"
         WebElement contactWebElement = driver.findElement(By.xpath("//*[@id='menu-item-855']/a"));
 
         if (contactWebElement.isDisplayed()) {
@@ -27,5 +26,7 @@ public class OfficeHoursTask2 {
         } else {
             System.out.println("Contact verification FAILED.");
         }
+
+        driver.close();
     }
 }
