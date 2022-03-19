@@ -7,8 +7,9 @@ import java.util.Set;
 
 public class BrowserUtilities {
 
-    // This method accepts int (in seconds) and executes Thread.sleep for the given duration.
+    /* This class contains general utility methods that are not related to a specific page.
 
+    This method accepts int (in seconds) and executes Thread.sleep for the given duration. */
     public static void sleep(int second) {
         second *= 1000;
         try {
@@ -45,7 +46,6 @@ public class BrowserUtilities {
     }
 
     // This method accepts a String "expectedTitle" and Asserts if it is true
-
     public static void verifyTitle(WebDriver driver, String expectedTitle) {
 
         Assert.assertEquals(driver.getTitle(), expectedTitle);

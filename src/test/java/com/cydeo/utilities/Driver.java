@@ -10,16 +10,13 @@ import java.util.concurrent.TimeUnit;
 public class Driver {
 
     // Create a private constructor to close access to the object of this class from outside the class
-
     private Driver() {}
 
     // WebDriver is private to close access from outside the class.
     // WebDriver is static to be used in a static method.
-
     private static WebDriver driver;
 
     // Create a reusable utility method that returns the same driver instance when called
-
     public static WebDriver getDriver(){
 
         if (driver == null) {
@@ -27,7 +24,8 @@ public class Driver {
                    outside the code. */
             String browserType = ConfigurationReader.getProperty("browser");
 
-            // Switch statement
+            /* Depending on the browser type that is returned from configuration.properties, a switch statement
+               will determine the case and open the matching browser. */
             switch(browserType){
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
@@ -36,7 +34,7 @@ public class Driver {
                     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
                 case "firefox":
-                    WebDriverManager.chromedriver().setup();
+                    WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     driver.manage().window().maximize();
                     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -44,5 +42,12 @@ public class Driver {
             }
         }
         return driver;
+    }
+
+    public static void closeDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 }

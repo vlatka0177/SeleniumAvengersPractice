@@ -4,11 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
 
 public class WebTableUtilities {
 
-      /* Method #1 info:
+    /* Method #1 info:
        • Name: returnOrderDate ()
        • Return type: String
        • Arg1: WebDriver driver
@@ -18,7 +21,6 @@ public class WebTableUtilities {
     public static String returnOrderDate(WebDriver driver, String customerName) {
 
         String locator = "//td[.='" + customerName + "']/following-sibling::td[3]";
-
         WebElement customerDateCell = driver.findElement(By.xpath(locator));
         return customerDateCell.getText();
     }
@@ -35,11 +37,17 @@ public class WebTableUtilities {
     public static void orderVerify(WebDriver driver, String customerName, String expectedOrderDate) {
 
         String locator = "//td[.='" + customerName + "']/following-sibling::td[3]";
-
         WebElement customerDateCell = driver.findElement(By.xpath(locator));
-
         String actualOrderDate = customerDateCell.getText();
-
         assertEquals(actualOrderDate, expectedOrderDate);
+    }
+
+    // Method name: getHeaderFromVehicleModelTable
+    public static List<String> getHeadersFromVehicleModelTable() {
+
+        List<WebElement> headerElements = Driver.getDriver().findElements(By.xpath("//thead[@class='grid-header']//th//span[1]"));
+        List<String> headerTitles = new ArrayList<>();
+        headerElements.forEach(k -> headerTitles.add(k.getText()));
+        return headerTitles;
     }
 }

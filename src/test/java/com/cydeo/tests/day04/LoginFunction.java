@@ -22,7 +22,7 @@ public class LoginFunction {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        driver.get(ConfigurationReader.getProperty("env"));
+        driver.get(ConfigurationReader.getProperty("env_CRM"));
     }
 
     @Test
@@ -30,16 +30,16 @@ public class LoginFunction {
 
         // Write a username
         WebElement userName = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        userName.sendKeys(ConfigurationReader.getProperty("username"));
+        userName.sendKeys(ConfigurationReader.getProperty("username_CRM"));
 
         // Write a password
         WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
-        password.sendKeys(ConfigurationReader.getProperty("password"));
+        password.sendKeys(ConfigurationReader.getProperty("password_CRM"));
 
         // Click login button
 
         // Verify the title
-        String expectedTitle = "Portal";
+        String expectedTitle = "Authorization";
         String actualTitle = driver.getTitle();
         Assert.assertEquals(actualTitle, expectedTitle);
     }
